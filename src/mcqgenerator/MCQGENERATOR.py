@@ -16,42 +16,11 @@ from langchain.chains import SequentialChain
 
 load_dotenv() 
 
-key = os.get("OPENAI_API_KEY ")
+key = os.getenv("OPENAI_API_KEY ")
 
 llm = ChatOpenAI(openai_api_key = key , model = "gpt-3.5-turbo",temperature = 0.5)
 
-RESPONSE_JSON = {
-    "1": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-    "2": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-    "3": {
-        "mcq": "multiple choice question",
-        "options": {
-            "a": "choice here",
-            "b": "choice here",
-            "c": "choice here",
-            "d": "choice here",
-        },
-        "correct": "correct answer",
-    },
-}
+
 
 
 TEMPLATE="""
