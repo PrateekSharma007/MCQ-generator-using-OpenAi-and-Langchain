@@ -52,20 +52,20 @@ with st.form("user_inputs") :
                 st.error("Error") 
 
             else  : 
-                if( isinstance(response,dict)) : 
-                    quiz = response.get("quiz" , None)
-
-                    if(quiz is not None) : 
-                        table_data = get_table_data(quiz) 
-                        if(table_data is not None) : 
-                            df = pd.DataFrame(table_data) 
-                            df.index = df.index + 1
-                            st.table(df) 
-                            st.text_area(label = "Review" , value = response["review"])
-                        else : 
-                            st.error("Error in the table data")
-                else : 
-                    st.write(response) 
-
+                if isinstance(response, dict):
+                    quiz_json_start = response['quiz'].find('{')
+                    quiz_json_end = response['quiz'].rfind('}') + 1
+                    quiz = response['quiz'][quiz_json_start:quiz_json_end]
+                    if quiz is not None:
+                        table_data = get_table_data(quiz)
+                        if table_data is not None:
+                            df=pd.DataFrame(table_data)
+                            df.index=df.index+1
+                            st.table(df)
+                            st.text_area(label="Review", value=response["review"])
+                        else:
+                            st.error("Error in table data")
+                    else:
+                        st.write(response)
 
 
